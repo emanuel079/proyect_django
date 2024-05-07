@@ -42,7 +42,7 @@ Este proyecto es una aplicación web diseñada para gestionar tanto productos co
 
 3. Accede a la nueva carpeta:
 
- ```bash
+   ```bash
     cd nombre_de_la_carpeta
     ```
 
