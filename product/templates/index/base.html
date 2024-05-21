@@ -9,15 +9,19 @@
     
     <style>
         body {
+            background-image: url('');
             background-color: #484949; /* Cambia el color de fondo del cuerpo */
-            color: antiquewhite; /* Cambia el color del texto */
-            padding-top: 150px; /* Agrega un relleno superior para evitar que el contenido se solape con la barra de navegación */
+            color: rgb(228, 199, 161); /* Cambia el color del texto */
+            padding-top: 50px; /* Agrega un relleno superior para evitar que el contenido se solape con la barra de navegación */
         }  
     
-        .card{
+        .card{            
             background-color: #484949;
-            border: none;          
-
+            border-radius: 5px;  
+            border-color: #2c2b2b;        
+            padding-bottom: 15px;
+            border-width: 5px;          
+                        
         }
 
         a {
@@ -37,26 +41,50 @@
         .botonProductos{
             margin-right: 30px;
         }
-        
-        .nav{
-            margin-top: 40px
-        }
-        
-        
+
+        .mi-input{
+            background-color: gray; /* Cambia el fondo del input a gris oscuro */
+            color: white; /* Cambia el color del texto a blanco */
+            display: flex;
+            
+        } 
+        .labelControlStock{
+            color: #d4d0d0;
+        }  
+                  
        
-
-
 
     </style>
 </head>
+
+
 <body> 
-    <nav class="nadvar bg-dark fixed-top"> 
-        <div class="container">           
-           <a class="botonInicio" href="{% url 'index' %}">INICIO</a>
-           <a class="botonProductos" href="{% url 'product_list' %}">PRODUCTOS</a>
-           <a class="botonCategorias" href="{% url 'category_list' %}">CATEGORIAS</a>         
+    <nav class="nadvar fixed-top"> 
+      
+    <nav class="navbar navbar-expand-lg navbar-dark   ">
+        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+            
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'product_list' %}">PRODUCTOS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category_list' %}">CATEGORIAS</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'supplier_list' %}">PROVEEDORES</a>
+            </li>
+            
         </div>
     </nav>
+    
     <div class="container mt-5">
         {% block content %}
         {% endblock %}

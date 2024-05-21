@@ -67,14 +67,20 @@ class ProductRepository:
             category__name=nombre_categoria
         )
 
+    
+    
     def delete(self, producto: Product):
         return producto.delete()
 
-    def get_product_gte_stock():
-        ...
+    
+    def get_product_stock_range(self, min_stock: int, max_stock: int) -> List[Product]:
+        products = Product.objects.filter(stock__gte=min_stock, stock__lte=max_stock)
+        return products
 
-    def get_product_lte_stock():
-        ...
+
+    def get_product_lte_stock(self, stock_threshold: int) -> List[Product]:   
+        return Product.objects.filter(stock__lte=stock_threshold)
+
 
     def update(
         self, 

@@ -1,9 +1,43 @@
 {% extends "index/base.html" %}
 {% block content %}
 
-<div class="container mt-3">
+<style>
+    .container-scroll {
+        overflow: auto;
+        max-height: 90vh;
+        scrollbar-width: none; /* Firefox */
+    }
+    .container-scroll::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+    }
+</style>
+
+<div class="container mt-3 container-scroll">
     <h2>Lista de Productos</h2>
-    <a href="{% url 'product_create' %}" class="btn btn-primary mb-3">Crear Producto</a>
+    <a href="{% url 'product_create' %}" class="btn btn-success">Crear Producto</a>
+    <br>   
+    <br>
+
+    <h2 class="mb-0">Productos por Stock</h2>
+    <br>
+    <button id="toggleFilterButton" class="btn btn-info mb-3">Filtrar por Stock</button>
+
+    <form id="filterForm" method="GET" action="{% url 'product_gte_stock_list' %}" class="form-inline mb-3" style="display:none;">
+        {% csrf_token %}
+        <div class="form-group mr-2">
+            <label class="labelControlStock" for="min_stock">Mínimo:</label>
+            <input type="number" id="min_stock" name="min_stock" class="mi-input form-control mx-sm-2" placeholder="Mínimo">
+        </div>
+        <div class="form-group mr-2">
+            <label class="labelControlStock" for="max_stock">Máximo:</label>
+            <input type="number" id="max_stock" name="max_stock" class="mi-input form-control mx-sm-2" placeholder="Máximo">
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-info">Buscar</button>
+    </form>
+
+    <br>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -29,8 +63,47 @@
                     <a href="{% url 'product_delete' product.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No hay productos disponibles.</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page=1">&laquo; Primero</a>
+                <a href="?page={{ products.previous_page_number }}">Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ products.number }} de {{ products.paginator.num_pages }}.
+            </span>
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">Siguiente</a>
+                <a href="?page={{ products.paginator.num_pages }}">Último &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
+<br>
+<script>
+    document.getElementById('toggleFilterButton').addEventListener('click', function() {
+        var filterForm = document.getElementById('filterForm');
+        if (filterForm.style.display === 'none') {
+            filterForm.style.display = 'block';
+        } else {
+            filterForm.style.display = 'none';
+        }
+        
+    });
+    
+    
+</script>
+
+
 {% endblock %}

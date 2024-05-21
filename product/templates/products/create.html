@@ -6,19 +6,19 @@
         {% csrf_token %}
         <div class="form-group">
             <label>Nombre</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="name" class="mi-input form-control" required>
         </div>
         <div class="form-group">
             <label>Descripción</label>
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" class="mi-input form-control"></textarea>
         </div>
         <div class="form-group">
             <label>Precio</label>
-            <input type="number" step="1000" name="price" class="form-control" required>
+            <input type="number" name="price" class="mi-input form-control" required>
         </div>
         <div class="form-group">
             <label>Categoría</label>
-            <select name="id_category" class="form-control">
+            <select name="id_category" class="mi-input form-control">
                 <option value="">Selecciona una categoría</option>
                 {% for category in categories %}
                     <option value="{{ category.id }}">{{ category.name }}</option>
@@ -27,9 +27,10 @@
         </div>
         <div class="form-group">
             <label>Stock</label>
-            <input type="number" name="stock" class="form-control">
+            <input type="number" name="stock" class="mi-input form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <br>
+        <button type="submit" class="btn btn-danger">Guardar</button>
     </form>
 </div>
 {% endblock %}

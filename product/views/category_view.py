@@ -2,8 +2,9 @@ from django.shortcuts import redirect, render
 
 
 from product.repositories.category import CategoryRepository
+from product.repositories.product import ProductRepository
 
-from product.models import Category
+
 
 category_repo = CategoryRepository()
 
@@ -18,12 +19,18 @@ def category_list(request):
         )
     )
 
-def category_detail(request, id):
-    category = category_repo.get_by_id(id)
+def category_detail(request, id:int):
+    category_repository = CategoryRepository()
+    product_repository = ProductRepository()
+    categoria = category_repository.get_by_id(id)
+    productos = product_repository.filter_by_category(categoria)
     return render(
-        request, 
-        'categories/detail.html', 
-        {'category': category}
+        request,
+        'categories/detail.html',
+        dict(   
+            category=categoria,
+            products=productos,
+        )
     )
 
 

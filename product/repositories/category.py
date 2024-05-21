@@ -20,12 +20,16 @@ class CategoryRepository:
     
     def create(
         self,
-        nombre: str,
-    ):
+        nombre: str
+    ) -> Category:
+        category = Category.objects.filter(name=nombre)
+        if category:
+            return "CHE EL NOMBRE ESTA OCUPADO"
         return Category.objects.create(
             name=nombre,
         )
     
+
     def delete(self, category: Category):
         return category.delete()
     

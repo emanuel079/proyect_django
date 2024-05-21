@@ -1,0 +1,23 @@
+{% extends "index/base.html" %}
+{% block content %}
+<div class="container mt-3">
+    <h2>Crear Proveedor</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" name="name" class="mi-input form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Dirección</label>
+            <textarea name="address" class="mi-input form-control" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="phone" class="mi-input form-control" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+    </form>
+</div>
+{% endblock %}
