@@ -11,6 +11,7 @@
         body {
             background-image: url('');
             background-color: #484949; /* Cambia el color de fondo del cuerpo */
+<<<<<<< HEAD
             color: rgb(228, 199, 161); /* Cambia el color del texto */
             padding-top: 50px; /* Agrega un relleno superior para evitar que el contenido se solape con la barra de navegación */
         }  
@@ -23,6 +24,15 @@
             border-width: 5px;          
                         
         }
+=======
+            color: antiquewhite; /* Cambia el color del texto */
+            padding-top: 150px; /* Agrega un relleno superior para evitar que el contenido se solape con la barra de navegación */
+        }  
+    
+        .card{
+            background-color: #484949;
+            border: none;          
+>>>>>>> 7ec27941f5735c7df2bd0baf4236194eeb8f507e
 
         a {
             text-decoration: none; /* Elimina el subrayado */
@@ -30,6 +40,15 @@
             
         }
 
+<<<<<<< HEAD
+=======
+        a {
+            text-decoration: none; /* Elimina el subrayado */
+            color: #FF5733; /* Cambia el color del texto */
+            
+        }
+
+>>>>>>> 7ec27941f5735c7df2bd0baf4236194eeb8f507e
         /* Cambiar color en hover */
         a:hover {
             color: #f2f3f2; /* Cambia el color del texto en hover */
@@ -40,6 +59,7 @@
         }
         .botonProductos{
             margin-right: 30px;
+<<<<<<< HEAD
         }
 
         .mi-input{
@@ -82,6 +102,19 @@
                 <a class="nav-link" href="{% url 'supplier_list' %}">PROVEEDORES</a>
             </li>
             
+=======
+        }     
+      
+             
+    </style>
+</head>
+<body> 
+    <nav class="nadvar bg-dark fixed-top"> 
+        <div class="container">           
+           <a class="botonInicio" href="{% url 'index' %}">INICIO</a>
+           <a class="botonProductos" href="{% url 'product_list' %}">PRODUCTOS</a>
+           <a class="botonCategorias" href="{% url 'category_list' %}">CATEGORIAS</a>         
+>>>>>>> 7ec27941f5735c7df2bd0baf4236194eeb8f507e
         </div>
     </nav>
     
