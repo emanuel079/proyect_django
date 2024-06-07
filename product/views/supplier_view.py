@@ -1,6 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from product.repositories.supplier import SupplierRepository
 from product.models import Supplier
+from django.contrib.auth.decorators import login_required
+
+
+
+
+
 
 supplier_repo = SupplierRepository()
 
@@ -16,6 +22,7 @@ def supplier_delete(request, supplier_id):
     supplier_repo.delete(supplier_id)
     return redirect('supplier_list')
 
+@login_required(login_url='login')
 def supplier_update(request, supplier_id):
     supplier = supplier_repo.get_by_id(supplier_id)
     if request.method == "POST":
@@ -33,6 +40,7 @@ def supplier_update(request, supplier_id):
 
     return render(request, 'supplier/update.html', {'supplier': supplier})
 
+@login_required(login_url='login')
 def supplier_create(request):
     if request.method == "POST":
         name = request.POST.get('name')

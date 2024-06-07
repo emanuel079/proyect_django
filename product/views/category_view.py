@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 
 from product.repositories.category import CategoryRepository
 from product.repositories.product import ProductRepository
-
+from django.contrib.auth.decorators import login_required
 
 
 category_repo = CategoryRepository()
@@ -41,7 +41,7 @@ def category_delete(request, id):
             
 
 
-
+@login_required(login_url='login')
 def category_update(request, id):
     category = category_repo.get_by_id(id)
     if request.method == "POST":
@@ -57,7 +57,7 @@ def category_update(request, id):
         )
     )
 
-
+@login_required(login_url='login')
 def category_create(request):
     if request.method == "POST":
         name = request.POST.get('name')

@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from product.models import Category
 from product.models import Product
 from product.repositories.product import ProductRepository
+from django.contrib.auth.decorators import login_required
+
 
 repo = ProductRepository()
 
@@ -20,11 +22,13 @@ def product_detail(request, id):
     producto = repo.get_by_id(id=id)
     return render(request, 'products/detail.html', {"product": producto})
 
+
 def product_delete(request, id):
     producto = repo.get_by_id(id=id)
     repo.delete(producto=producto)
     return redirect('product_list')
 
+@login_required(login_url='login')
 def product_update(request, id):
     product = repo.get_by_id(id=id)
     categorias = Category.objects.all()
@@ -48,6 +52,7 @@ def product_update(request, id):
 
     return render(request, 'products/update.html', {'categories': categorias, 'product': product})
 
+@login_required(login_url='login')
 def product_create(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -117,4 +122,4 @@ def product_lte_stock_list(request):
 
 
 def index_view(request):
-    return render(request, 'index/index.html')
+    return render(request, 'home/index.html')

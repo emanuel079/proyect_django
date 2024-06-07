@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <img class="card-img-top" src="holder.js/100x180/" alt="">
+                <div class="card-body">
+                    <h4 class="card-title text-center fw-bold" style="font-family: 'Arial', sans-serif; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);"><h4 class="card-title">Bienvenido {% if user.is_authenticated %} {{user.first_name}} {{user.last_name}} {% endif %}</h4>
+                    <p class="card-text text-center" style="font-family: 'Arial', sans-serif; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">Aquí puedes gestionar tus productos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
